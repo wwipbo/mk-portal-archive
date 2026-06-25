@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mk体育 · 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f5f2eb;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #2e2a26;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-wrapper {
+            max-width: 820px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* 文章感的主容器 */
+        .content-card {
+            background: #fffcf8;
+            border-radius: 24px;
+            padding: 2.8rem 2.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
+            transition: box-shadow 0.2s;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+            .content-card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 18px;
+            }
+        }
+
+        /* 标题层级 — 柔和、生活化但正式 */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 550;
+            letter-spacing: -0.01em;
+            color: #1f1c18;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #6b625a;
+            margin-bottom: 2rem;
+            border-left: 3px solid #d9cdbe;
+            padding-left: 1rem;
+            font-weight: 380;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 520;
+            margin: 2rem 0 0.8rem 0;
+            color: #2b2621;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+        }
+
+        /* 引用块 / 提示框 — 米白基底 + 浅棕 */
+        .highlight-box {
+            background: #efe8de;
+            padding: 1.2rem 1.6rem;
+            border-radius: 16px;
+            margin: 1.6rem 0;
+            border-left: 5px solid #b8a99a;
+            font-size: 0.98rem;
+            color: #3d352e;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .highlight-box strong {
+            font-weight: 570;
+            color: #1f1b16;
+        }
+
+        .insight-note {
+            background: #f8f3ec;
+            padding: 1rem 1.5rem;
+            border-radius: 14px;
+            border: 1px solid #e2d7cc;
+            margin: 1.4rem 0;
+            font-style: normal;
+        }
+
+        .insight-note::before {
+            content: "💡 一点想法";
+            display: block;
+            font-weight: 520;
+            margin-bottom: 0.25rem;
+            color: #7c6e5e;
+            letter-spacing: 0.03em;
+            font-size: 0.9rem;
+        }
+
+        /* 特点列表 */
+        .feature-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 1.5rem;
+            margin: 1.4rem 0 1.8rem;
+        }
+
+        .feature-list li {
+            padding: 0.3rem 0 0.3rem 1.8rem;
+            position: relative;
+            font-size: 0.98rem;
+            color: #35302b;
+        }
+
+        .feature-list li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            font-weight: 700;
+            color: #9b8a78;
+            font-size: 1.6rem;
+            line-height: 1;
+            top: 0.05rem;
+        }
+
+        @media (max-width: 480px) {
+            .feature-list {
+                grid-template-columns: 1fr;
+                gap: 0.3rem;
+            }
+        }
+
+        /* 链接样式 — 保持克制 */
+        a {
+            color: #5f4d3a;
+            text-decoration: none;
+            border-bottom: 1px solid #d6c8b8;
+            transition: border-color 0.2s, color 0.2s;
+            font-weight: 450;
+        }
+
+        a:hover {
+            color: #2b1f16;
+            border-bottom-color: #9b8874;
+        }
+
+        /* 场景小标签 */
+        .scene-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+            margin: 1.2rem 0 0.5rem;
+        }
+
+        .scene-tag {
+            background: #ede6dd;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #4c4139;
+            border: 1px solid #dacfc2;
+            letter-spacing: 0.02em;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e0d6ca;
+            margin: 2rem 0 1.2rem;
+            opacity: 0.5;
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-q {
+            font-weight: 530;
+            margin-bottom: 0.2rem;
+            color: #2c2721;
+        }
+
+        .faq-a {
+            color: #4f453d;
+            font-size: 0.97rem;
+            padding-left: 0.2rem;
+        }
+
+        .footer-note {
+            margin-top: 2.2rem;
+            font-size: 0.88rem;
+            color: #71675e;
+            border-top: 1px solid #e3d9ce;
+            padding-top: 1.2rem;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <div class="content-card">
+
+        <h1>mk体育 · 站点与产品说明</h1>
+        <div class="subhead">一处关注运动信息与日常参考的页面</div>
+
+        <p>
+            无论你是在寻找训练思路、比赛记录，或是想了解某个运动项目的背景，<a href="https://mk-portal-sport.com">mk体育</a> 这个站点提供了一个内容聚合式的入口。它没有喧闹的弹窗，也没有过度的推销，更像是一个安静的资料架——把体育相关的内容整理好，等你来翻阅。
+        </p>
+
+        <div class="highlight-box">
+            <strong>想说的实话：</strong> 这里不承诺“一秒变专家”，也不吹嘘独家内幕。它的存在是为了帮你更快接触到体育资讯与基础指南，省去四处翻找的麻烦。如果你对某个运动项目感到好奇，或想找一些通用的锻炼参考，可以把它当作一个起点。
+        </div>
+
+        <h2>站点的几个特点</h2>
+        <ul class="feature-list">
+            <li>内容偏重实用与介绍，减少冗余广告干扰</li>
+            <li>更新节奏稳定，偏向运动百科与基础教学</li>
+            <li>页面结构清晰，电脑与手机阅读都算舒服</li>
+            <li>没有强制注册或下载，浏览门槛较低</li>
+            <li>引用数据与信息来源相对可靠（非个人杜撰）</li>
+        </ul>
+
+        <!-- 使用建议 -->
+        <h2>怎么使用比较合适</h2>
+        <p>你可以把它加入书签，当作运动类信息的备用查询地。比如想了解某项运动的规则、装备选择或训练阶段划分，在 <a href="https://mk-portal-sport.com">mk体育</a> 上找找看，基本都能找到概括性说明。它不太适合作为深度科研参考，但日常了解、入门扫盲绰绰有余。</p>
+
+        <div class="insight-note">
+            另外，站内有不少运动项目的“常见误区”整理，这对刚接触某项运动的人来说挺友好，能少走一些弯路。
+        </div>
+
+        <h2>常见场景举例</h2>
+        <div class="scene-group">
+            <span class="scene-tag">周末想尝试新运动</span>
+            <span class="scene-tag">查找基础训练动作</span>
+            <span class="scene-tag">了解运动装备分类</span>
+            <span class="scene-tag">比赛规则快速查阅</span>
+            <span class="scene-tag">运动营养小常识</span>
+        </div>
+        <p style="margin-top: 0.8rem;">当然，以上只是列举——实际内容比这些标签更杂也更丰富，取决于你具体想了解哪个方向。</p>
+
+        <hr>
+
+        <h2>一些你可能想问的</h2>
+        <div class="faq-item">
+            <div class="faq-q">内容会经常更新吗？</div>
+            <div class="faq-a">不算日更，但保持周期性补充，尤其针对热门运动项目。偶尔也会有旧内容修订。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">需要注册或付费吗？</div>
+            <div class="faq-a">绝大多数内容直接可看，不需要注册。目前没有付费墙，未来也不打算设置。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">信息准确度如何？</div>
+            <div class="faq-a">站点编辑会参考多个来源，并且尽量注明出处。但建议重要决策（如训练计划、伤病处理）还是咨询专业人士。</div>
+        </div>
+
+        <div class="footer-note">
+            <span>mk体育 · 一个偏向生活化的运动信息站点</span><br>
+            <span style="font-size:0.82rem; opacity:0.7;">内容仅供一般参考，不具有专业指导效力。</span>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
